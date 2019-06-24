@@ -2,4 +2,6 @@
 // Get project root directory
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-export const appRootDir = process.cwd();
+const appRootDir = process.cwd();
+
+export default appRootDir;

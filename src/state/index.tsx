@@ -1,4 +1,4 @@
-import {
+import React, {
   useReducer,
   createContext,
   Dispatch,
@@ -11,7 +11,7 @@ import {
 // State
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-let initialState: State = {};
+const initialState: State = {};
 
 // Dependency injection
 export interface CreateState {
@@ -31,7 +31,7 @@ export interface State {
 // Reducer
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-let allReducers: Record<string, Reducer> = {};
+const allReducers: Record<string, Reducer> = {};
 
 // Dependency injection
 export interface AddReducer {

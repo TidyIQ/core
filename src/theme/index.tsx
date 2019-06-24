@@ -1,19 +1,16 @@
-import path from "path";
-import fs from "fs";
+// import path from "path";
+// import fs from "fs";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import blue from "@material-ui/core/colors/blue";
 import green from "@material-ui/core/colors/green";
-import { appRootDir } from "../../utils";
+// import appRootDir from "../../utils";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Add branding to theme
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-const BRANDING_CONFIG_FILE = path.join("theme", "branding.js");
-const brandingConfigPath = path.join(appRootDir, BRANDING_CONFIG_FILE);
-
-if (fs.existsSync(brandingConfigPath)) {
-}
+// const BRANDING_CONFIG_FILE = path.join("theme", "branding.js");
+// const brandingConfigPath = path.join(appRootDir, BRANDING_CONFIG_FILE);
 
 export interface ThemeBranding {
   readonly palette: {
@@ -31,7 +28,7 @@ export interface SetThemeBranding {
   (themeBranding: ThemeBranding): void;
 }
 
-export let themeBranding: ThemeBranding = {
+export const themeBranding: ThemeBranding = {
   palette: {
     primary: blue[700],
     secondary: green[800]
@@ -45,18 +42,4 @@ export let themeBranding: ThemeBranding = {
 
 export const setThemeBranding: SetThemeBranding = branding => {
   Object.assign(themeBranding, branding);
-};
-
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-// Set light or dark theme
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-
-export interface SetThemeType {
-  (type: Theme["palette"]["type"]): void;
-}
-
-export let themeType: Theme["palette"]["type"] = "light";
-
-export const setThemeType: SetThemeType = type => {
-  themeType = type;
 };

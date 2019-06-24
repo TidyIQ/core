@@ -1,3 +1,4 @@
+import React from "react";
 import Router from "next/router";
 import { decomposeColor } from "@material-ui/core/styles/colorManipulator";
 import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon";
@@ -63,8 +64,9 @@ export const colorToHSL: ColorToHSL = color => {
   let h = 0;
   let s = 0;
   let l = (max + min) / 2;
-  if (max == min) {
-    h = s = 0;
+  if (max === min) {
+    h = 0;
+    s = 0;
   } else {
     const d = max - min;
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
@@ -101,8 +103,7 @@ export const createVibrantBackground: CreateVibrantBackground = color => {
   // Get HSL values from color
   const { h, s, l } = colorToHSL(color);
   // Increase bottom hue by 14
-  let bottomHSL = 0;
-  h > 346 ? (bottomHSL = h - 346) : (bottomHSL = h + 14);
+  const bottomHSL = h > 346 ? h - 346 : h + 14;
   return `linear-gradient(hsl(${h}, ${s}%, ${l}%), hsl(${bottomHSL}, ${s}%, ${l}%))`;
 };
 
@@ -118,22 +119,16 @@ export const createBackgroundGradient: CreateBackgroundGradient = color => {
   // Get HSL values from color
   const { h, s, l } = colorToHSL(color);
   // Create starting color
-  let startColor = {
-    h: 0,
-    s: 0,
-    l: 0
+  const startColor = {
+    h: h > 357 ? h - 357 : h + 3,
+    s: Math.min(100, s + 5),
+    l: l - 18
   };
-  h > 357 ? (startColor.h = h - 357) : (startColor.h = h + 3);
-  startColor.s = Math.min(100, s + 5);
-  startColor.l = l - 18;
   // Create ending color
-  let endColor = {
-    h: 0,
-    s: 0,
-    l: 0
+  const endColor = {
+    h: h < 10 ? h + 350 : h - 10,
+    s: Math.min(100, s + 11),
+    l: Math.min(100, l + 15)
   };
-  h < 10 ? (endColor.h = h + 350) : (endColor.h = h - 10);
-  endColor.s = Math.min(100, s + 11);
-  endColor.l = Math.min(100, l + 15);
   return `linear-gradient(45deg, hsl(${startColor.h}, ${startColor.s}%, ${startColor.l}%) 1%, hsl(${h}, ${s}%, ${l}%) 64%, hsl(${endColor.h}, ${endColor.s}%, ${endColor.l}%) 97%)`;
 };

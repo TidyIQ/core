@@ -1,8 +1,8 @@
 import React from "react";
 import App, { Container } from "next/app";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "../../../theme";
 import { ThemeProvider } from "@material-ui/styles";
+import theme from "../../../theme/createTheme";
 import { StateProvider } from "../../../state";
 
 class AppProvider extends App {
@@ -13,6 +13,7 @@ class AppProvider extends App {
       jssStyles.parentNode.removeChild(jssStyles);
     }
   }
+
   render(): JSX.Element {
     const { Component, pageProps, children } = this.props;
     return (
@@ -29,4 +30,4 @@ class AppProvider extends App {
   }
 }
 
-export default withApollo(AppProvider);
+export default AppProvider;

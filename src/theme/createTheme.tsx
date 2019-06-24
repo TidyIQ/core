@@ -1,14 +1,14 @@
 import { CSSProperties } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeOptions, Theme } from "@material-ui/core/styles/createMuiTheme";
+import blue from "@material-ui/core/colors/blue";
+import green from "@material-ui/core/colors/green";
+import amber from "@material-ui/core/colors/amber";
+import { themeBranding } from ".";
 import {
   createVibrantBackground,
   createBackgroundGradient
 } from "../utils/functions";
-import { themeType, themeBranding } from ".";
-import blue from "@material-ui/core/colors/blue";
-import green from "@material-ui/core/colors/green";
-import amber from "@material-ui/core/colors/amber";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Constants
@@ -19,7 +19,7 @@ interface Palette {
   success: CSSProperties["color"];
   warn: CSSProperties["color"];
 }
-let palette: Palette = {
+const palette: Palette = {
   info: blue[700],
   success: green[800],
   warn: amber[700]
@@ -76,7 +76,7 @@ const createMyTheme = (options?: ThemeOptions): Theme => {
       secondary: {
         main: themeBranding.palette.secondary
       },
-      type: themeType
+      type: "light"
     },
     typography: {
       fontFamily: themeBranding.typography.fontFamily.text,
@@ -194,7 +194,7 @@ export default theme;
 // Create light theme variant
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-export const lightTheme = (theme: Theme): Theme =>
+export const lightTheme = (): Theme =>
   createMuiTheme({
     ...theme,
     palette: {

@@ -107,7 +107,7 @@ export interface UpdateForm<
   K extends keyof State["forms"][S],
   S extends keyof State["forms"] = keyof State["forms"]
 > {
-  (form: S, value: State["forms"][S][K]): UpdateFormReturn<K, S>;
+  (): UpdateFormReturn<K, S>;
 }
 
 interface UpdateFormReturn<
@@ -128,7 +128,7 @@ interface DisplayForm<S extends keyof State["forms"] = keyof State["forms"]> {
 }
 
 export const displayForm: DisplayForm = (form, value) => {
-  const displayFormAction: UpdateForm<"isOpen"> = (form, value) => {
+  const displayFormAction: UpdateForm<"isOpen"> = () => {
     return {
       type: UPDATE_FORM,
       payload: {
@@ -138,9 +138,7 @@ export const displayForm: DisplayForm = (form, value) => {
       }
     };
   };
-  createAction(
-    (): UpdateFormReturn<"isOpen"> => displayFormAction(form, value)
-  );
+  createAction((): UpdateFormReturn<"isOpen"> => displayFormAction());
 };
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
