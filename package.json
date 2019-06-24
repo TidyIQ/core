@@ -1,8 +1,7 @@
 {
-  "name": "@tidyiq/client-template",
+  "name": "@tidyiq/core",
   "version": "1.0.0",
-  "description": "Template for client websites",
-  "private": true,
+  "description": "Core template for all website types",
   "keywords": [
     "tidyiq"
   ],
