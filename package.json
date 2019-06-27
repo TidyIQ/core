@@ -1,7 +1,7 @@
 {
   "name": "@tidyiq/core-development",
-  "version": "0.0.2",
-  "description": "Core template for all websites and web apps",
+  "version": "0.1.0",
+  "description": "Development of core template for all websites and web apps",
   "keywords": [
     "tidyiq"
   ],
@@ -16,52 +16,25 @@
   "bugs": {
     "url": "https://github.com/TidyIQ/core/issues"
   },
-  "babel": {
-    "extends": "./config/.babelrc"
-  },
   "eslintConfig": {
-    "extends": [
-      "@tidyiq"
-    ],
-    "rules": {
-      "react/jsx-filename-extension": [
-        1,
-        {
-          "extensions": [
-            ".js",
-            ".jsx",
-            ".ts",
-            ".tsx"
-          ]
-        }
-      ]
-    }
+    "extends": "@tidyiq"
   },
   "scripts": {
     "lint": "eslint */**/*.{js,ts,tsx} --quiet --fix",
-    "test": "test",
-    "build": "eslint */**/*.{js,ts,tsx} --quiet --fix && tsc"
+    "type-check": "tsc",
+    "build": "eslint */**/*.{js,ts,tsx} --quiet --fix && tsc -d --p src"
   },
   "dependencies": {
     "@material-ui/core": "^4.1.2",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.1.2",
-    "@testing-library/react": "^8.0.1",
-    "@tidyiq/eslint-config": "^1.0.6",
-    "@types/jest": "^24.0.15",
-    "@types/material-ui": "^0.21.6",
-    "@types/next": "^8.0.5",
-    "@types/react": "^16.8.22",
-    "@types/react-dom": "^16.8.4",
-    "eslint": "^6.0.0",
-    "jest": "^24.8.0",
+    "@zeit/next-typescript": "^1.1.1",
+    "dotenv": "^8.0.0",
     "next": "^8.1.0",
-    "prettier": "^1.18.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "typescript": "^3.5.2"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@types/node": "^12.0.10"
+    "@tidyiq/core-dev": "0.0.3"
   }
 }

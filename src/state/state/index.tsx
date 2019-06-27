@@ -1,28 +1,25 @@
-import { State } from "..";
+import { DefaultState } from "./default";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
-// Forms
+// Typescript
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
+// Form fields
 export interface FormFieldStandard {
   isInvalid: boolean;
   isValid: boolean;
   labelWidth: number;
   value: string;
 }
-
 export interface FormFieldPassword extends FormFieldStandard {
   showPassword: boolean;
 }
+type FormField = FormFieldStandard | FormFieldPassword;
 
-export type FormField = FormFieldStandard | FormFieldPassword;
-
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-// Default state
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-
-interface DefaultState extends State {
-  readonly forms?: {
+// State
+export interface State {
+  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  readonly forms: {
     [key: string]: {
       fields: {
         [key: string]: FormField;
@@ -30,7 +27,7 @@ interface DefaultState extends State {
       isOpen?: boolean;
     };
   };
-  readonly progress?: {
+  readonly progress: {
     [key: string]: {
       error: {
         message: string;
@@ -39,19 +36,6 @@ interface DefaultState extends State {
       status: "waiting" | "loading" | "success" | "error";
     };
   };
-  readonly snackbar?: {
-    open: boolean;
-    message: string;
-    undo: null | (() => void);
-    variant: "success" | "warning" | "error" | "info";
-  };
 }
 
-export const defaultState: DefaultState = {
-  snackbar: {
-    message: "",
-    open: false,
-    undo: null,
-    variant: "info"
-  }
-};
+export interface AllState extends DefaultState, State {}

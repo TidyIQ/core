@@ -2,8 +2,8 @@ import React from "react";
 import App, { Container } from "next/app";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/styles";
-import theme from "../../../theme/createTheme";
-import { StateProvider } from "../../../state";
+import theme from "../theme/createTheme";
+import { StateProvider } from "../state/store";
 
 class AppProvider extends App {
   componentDidMount(): void {

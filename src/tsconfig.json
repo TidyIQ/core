@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "noEmit": false,
+    "outDir": "../dist",
+    "removeComments": false
+  },
+  "extends": "../tsconfig.json"
+}
