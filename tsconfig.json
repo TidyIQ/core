@@ -1,16 +1,7 @@
 {
+  "extends": "./node_modules/@tidyiq/core-dev/config/tsconfig.json",
   "compilerOptions": {
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "jsx": "preserve",
-    "lib": ["dom", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strict": true,
-    "target": "esnext"
+    "sourceMap": false
   },
   "exclude": ["dist"]
 }

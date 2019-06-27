@@ -2,8 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "noEmit": false,
-    "outDir": "../dist",
-    "removeComments": false
+    "outDir": "../dist"
   },
   "extends": "../tsconfig.json"
 }
