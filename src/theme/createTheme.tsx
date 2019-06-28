@@ -4,7 +4,7 @@ import { ThemeOptions, Theme } from "@material-ui/core/styles/createMuiTheme";
 import blue from "@material-ui/core/colors/blue";
 import green from "@material-ui/core/colors/green";
 import amber from "@material-ui/core/colors/amber";
-import { themeBranding } from "../../../theme/branding";
+import { themeBranding } from "../../../../theme/branding";
 import {
   createVibrantBackground,
   createBackgroundGradient

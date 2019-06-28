@@ -1,4 +1,4 @@
-import userReducers from "../../../../state/reducers";
+import userReducers from "../../../../../state/reducers";
 import defaultReducers from "./default";
 import { AllState } from "../state";
 
