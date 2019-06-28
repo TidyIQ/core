@@ -1,3 +1,16 @@
 {
-  "extends": "./node_modules/@tidyiq/core-dev/config/tsconfig.json"
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "dist",
+    "strict": true,
+    "target": "ES2017"
+  },
+  "exclude": ["**/dist/*"],
+  "include": ["src/**/*"]
 }
