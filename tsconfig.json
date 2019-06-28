@@ -1,7 +1,3 @@
 {
-  "extends": "./node_modules/@tidyiq/core-dev/config/tsconfig.json",
-  "compilerOptions": {
-    "sourceMap": false
-  },
-  "exclude": ["dist"]
+  "extends": "./node_modules/@tidyiq/core-dev/config/tsconfig.json"
 }

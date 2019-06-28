@@ -1,6 +1,6 @@
 {
   "name": "@tidyiq/core-development",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Development of core template for all websites and web apps",
   "keywords": [
     "tidyiq"
@@ -22,19 +22,18 @@
   "scripts": {
     "lint": "eslint */**/*.{js,ts,tsx} --quiet --fix",
     "type-check": "tsc",
-    "build": "eslint */**/*.{js,ts,tsx} --quiet --fix && tsc -d --p src"
+    "build": "eslint */**/*.{js,ts,tsx} --quiet --fix && tsc -d"
   },
   "dependencies": {
     "@material-ui/core": "^4.1.2",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.1.2",
-    "@zeit/next-typescript": "^1.1.1",
     "dotenv": "^8.0.0",
     "next": "^8.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@tidyiq/core-dev": "0.0.6"
+    "@tidyiq/core-dev": "^0.0.10"
   }
 }
