@@ -34,6 +34,6 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@tidyiq/core-dev": "0.0.12"
+    "@tidyiq/core-dev": "0.0.13"
   }
 }
