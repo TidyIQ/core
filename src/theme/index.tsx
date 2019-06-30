@@ -3,14 +3,10 @@
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import blue from "@material-ui/core/colors/blue";
 import green from "@material-ui/core/colors/green";
-// import appRootDir from "../../utils";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Add branding to theme
 // ::::::::::::::::::::::::::::::::::::::::::::::::
-
-// const BRANDING_CONFIG_FILE = path.join("theme", "branding.js");
-// const brandingConfigPath = path.join(appRootDir, BRANDING_CONFIG_FILE);
 
 export interface ThemeBranding {
   readonly palette: {
@@ -24,10 +20,6 @@ export interface ThemeBranding {
   };
 }
 
-export interface SetThemeBranding {
-  (themeBranding: ThemeBranding): void;
-}
-
 export const themeBranding: ThemeBranding = {
   palette: {
     primary: blue[700],
@@ -38,8 +30,4 @@ export const themeBranding: ThemeBranding = {
       text: '"Open Sans", "Roboto", "Helvetica", "Arial", sans-serif'
     }
   }
-};
-
-export const setThemeBranding: SetThemeBranding = branding => {
-  Object.assign(themeBranding, branding);
 };

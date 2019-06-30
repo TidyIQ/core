@@ -1,8 +1,7 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import Router from "next/router";
 import { decomposeColor } from "@material-ui/core/styles/colorManipulator";
 import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon";
-import { NextFunctionComponent } from "next";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Convert icon name to component
@@ -15,7 +14,7 @@ interface IconComponentProps {
 }
 
 // Function
-export const IconComponent: NextFunctionComponent<IconComponentProps> = ({
+export const IconComponent: FunctionComponent<IconComponentProps> = ({
   variant,
   props
 }) => {

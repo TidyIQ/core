@@ -1,12 +1,5 @@
-import React, { ReactElement, ComponentType } from "react";
-import Document, {
-  Head,
-  Main,
-  NextScript,
-  DefaultDocumentIProps,
-  RenderPageResponse,
-  AnyPageProps
-} from "next/document";
+import React from "react";
+import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/styles";
 import flush from "styled-jsx/server";
 
@@ -26,9 +19,7 @@ class DocumentProvider extends Document {
   }
 }
 
-DocumentProvider.getInitialProps = async (
-  ctx
-): Promise<DefaultDocumentIProps> => {
+DocumentProvider.getInitialProps = async ctx => {
   // Resolution order
   //
   // On the server:
@@ -55,10 +46,9 @@ DocumentProvider.getInitialProps = async (
   const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
-  ctx.renderPage = (): RenderPageResponse =>
+  ctx.renderPage = () =>
     originalRenderPage({
-      enhanceApp: (App): ComponentType<AnyPageProps> => (props): ReactElement =>
-        sheets.collect(<App {...props} />)
+      enhanceApp: App => props => sheets.collect(<App {...props} />)
     });
 
   const initialProps = await Document.getInitialProps(ctx);
@@ -66,12 +56,12 @@ DocumentProvider.getInitialProps = async (
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: (
-      <React.Fragment>
+    styles: [
+      <React.Fragment key={1}>
         {sheets.getStyleElement()}
         {flush() || null}
       </React.Fragment>
-    )
+    ]
   };
 };
 
