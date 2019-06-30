@@ -1,6 +1,6 @@
 {
   "name": "tidyiq-core-development",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Development of core template for all websites and web apps",
   "keywords": [
     "tidyiq"
@@ -34,6 +34,6 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "@tidyiq/core-dev": "0.0.13"
+    "@tidyiq/core-dev": "^0.0.16"
   }
 }
