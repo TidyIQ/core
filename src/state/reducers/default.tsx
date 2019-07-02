@@ -7,7 +7,9 @@ import {
   UpdateFormReturn,
   UpdateFieldReturn,
   SetProgressErrorReturn,
-  SnackbarOpenReturn
+  SnackbarOpenReturn,
+  SnackbarCloseReturn,
+  SNACKBAR_CLOSE
 } from "../actions/default";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -82,7 +84,7 @@ const setProgressErrorReducer: Reducer<SetProgressErrorReturn> = {
               description: action.payload.description,
               message: action.payload.message
             },
-            status: "error"
+            status: action.payload.status
           }
         }
       };
@@ -92,16 +94,32 @@ const setProgressErrorReducer: Reducer<SetProgressErrorReturn> = {
 };
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
-// Open snackbar
+// Close snackbar
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-const snackbarOpenReducer: Reducer<SnackbarOpenReturn> = {
+const snackbarCloseReducer: Reducer<SnackbarCloseReturn> = {
   [SNACKBAR_OPEN]: (state, action) => {
     return {
       ...state,
       snackbar: {
+        ...state.snackbar,
+        open: action.payload.open
+      }
+    };
+  }
+};
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+// Open snackbar
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+const snackbarOpenReducer: Reducer<SnackbarOpenReturn> = {
+  [SNACKBAR_CLOSE]: (state, action) => {
+    return {
+      ...state,
+      snackbar: {
         message: action.payload.message,
-        open: true,
+        open: action.payload.open,
         undo: action.payload.undo,
         variant: action.payload.variant
       }
@@ -117,7 +135,8 @@ const defaultReducers = {
   ...updateFieldReducer,
   ...updateFormReducer,
   ...setProgressErrorReducer,
-  ...snackbarOpenReducer
+  ...snackbarOpenReducer,
+  ...snackbarCloseReducer
 };
 
 export default defaultReducers;

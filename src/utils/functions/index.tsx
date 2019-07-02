@@ -1,26 +1,5 @@
-import React, { FunctionComponent } from "react";
 import Router from "next/router";
 import { decomposeColor } from "@material-ui/core/styles/colorManipulator";
-import SvgIcon, { SvgIconProps } from "@material-ui/core/SvgIcon";
-
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-// Convert icon name to component
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-
-// Typescript
-interface IconComponentProps {
-  variant: typeof SvgIcon;
-  props?: SvgIconProps;
-}
-
-// Function
-export const IconComponent: FunctionComponent<IconComponentProps> = ({
-  variant,
-  props
-}) => {
-  const Component = variant;
-  return <Component {...props} />;
-};
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Redirect to target URL

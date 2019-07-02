@@ -3,6 +3,10 @@ import Document, { Head, Main, NextScript } from "next/document";
 import { ServerStyleSheets } from "@material-ui/styles";
 import flush from "styled-jsx/server";
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+// Component
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
 class DocumentProvider extends Document {
   render(): JSX.Element {
     return (
@@ -11,13 +15,16 @@ class DocumentProvider extends Document {
         <body>
           <Main />
           <NextScript />
-          {/* Include Facebook SDK */}
           <script async defer src="https://connect.facebook.net/en_US/sdk.js" />
         </body>
       </html>
     );
   }
 }
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+// Initial props
+// ::::::::::::::::::::::::::::::::::::::::::::::::
 
 DocumentProvider.getInitialProps = async ctx => {
   // Resolution order

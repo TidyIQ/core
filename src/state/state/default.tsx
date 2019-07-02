@@ -4,8 +4,8 @@
 
 export interface DefaultState {
   readonly snackbar: {
-    open: boolean;
     message: string;
+    open: boolean;
     undo: null | (() => void);
     variant: "success" | "warning" | "error" | "info";
   };

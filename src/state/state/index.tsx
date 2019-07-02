@@ -5,16 +5,13 @@ import { DefaultState } from "./default";
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
 // Form fields
-export interface FormFieldStandard {
+export interface FormField {
   isInvalid: boolean;
   isValid: boolean;
   labelWidth: number;
+  showPassword?: boolean;
   value: string;
 }
-export interface FormFieldPassword extends FormFieldStandard {
-  showPassword: boolean;
-}
-type FormField = FormFieldStandard | FormFieldPassword;
 
 // State
 export interface State {

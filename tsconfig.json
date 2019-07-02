@@ -2,5 +2,5 @@
   "compilerOptions": {
     "rootDir": "../../"
   },
-  "extends": "./node_modules/@tidyiq/core-dev/tsconfig_es6/tsconfig.json"
+  "extends": "./node_modules/@tidyiq/core-dev/tsconfig_es5/tsconfig.json"
 }

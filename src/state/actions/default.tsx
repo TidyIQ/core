@@ -109,6 +109,7 @@ export interface SetProgressErrorReturn<
     progress: F;
     message: AllState["progress"][F]["error"]["message"];
     description: AllState["progress"][F]["error"]["description"];
+    status: AllState["progress"][F]["status"];
   };
 }
 
@@ -122,18 +123,44 @@ export const setProgressError: SetProgressError = (
     payload: {
       progress,
       message,
-      description
+      description,
+      status: "error"
     }
   };
 };
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
-// Snackbar
+// Close snackbar
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+export const SNACKBAR_CLOSE = "SNACKBAR_CLOSE";
+
+interface SnackbarClose {
+  (): SnackbarCloseReturn;
+}
+
+export interface SnackbarCloseReturn {
+  type: string;
+  payload: {
+    open: AllState["snackbar"]["open"];
+  };
+}
+
+export const closeSnackbar: SnackbarClose = () => {
+  return {
+    type: SNACKBAR_CLOSE,
+    payload: {
+      open: false
+    }
+  };
+};
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+// Open snackbar
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
 export const SNACKBAR_OPEN = "SNACKBAR_OPEN";
 
-// Open snackbar
 interface SnackbarOpen {
   (
     variant: AllState["snackbar"]["variant"],
@@ -144,7 +171,7 @@ interface SnackbarOpen {
 
 export interface SnackbarOpenReturn {
   type: string;
-  payload: Omit<AllState["snackbar"], "open">;
+  payload: AllState["snackbar"];
 }
 
 export const openSnackbar: SnackbarOpen = (variant, message, undo) => {
@@ -153,6 +180,7 @@ export const openSnackbar: SnackbarOpen = (variant, message, undo) => {
     payload: {
       variant,
       message,
+      open: true,
       undo
     }
   };
