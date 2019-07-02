@@ -5,6 +5,12 @@ import OAuthButton, { OAuthButtonProps } from ".";
 import GoogleIcon from "../../icon/GoogleFilled";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
+// Typescript
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+type GoogleOAuthButtonProps = Omit<OAuthButtonProps, "icon">;
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
 // CSS
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -18,7 +24,7 @@ const useStyles = makeStyles({
 // Component
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-const GoogleOAuthButton: FunctionComponent<OAuthButtonProps> = ({
+const GoogleOAuthButton: FunctionComponent<GoogleOAuthButtonProps> = ({
   children,
   onClick,
   buttonProps

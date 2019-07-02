@@ -5,6 +5,12 @@ import MailIcon from "@material-ui/icons/Mail";
 import OAuthButton, { OAuthButtonProps } from ".";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
+// Typescript
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+type EmailAuthButtonProps = Omit<OAuthButtonProps, "icon">;
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
 // CSS
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -18,7 +24,7 @@ const useStyles = makeStyles({
 // Component
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-const EmailAuthButton: FunctionComponent<OAuthButtonProps> = ({
+const EmailAuthButton: FunctionComponent<EmailAuthButtonProps> = ({
   children,
   onClick,
   buttonProps

@@ -5,6 +5,12 @@ import OAuthButton, { OAuthButtonProps } from ".";
 import FacebookIcon from "../../icon/FacebookFilled";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
+// Typescript
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+type FacebookOAuthButtonProps = Omit<OAuthButtonProps, "icon">;
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
 // CSS
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -22,7 +28,7 @@ const useStyles = makeStyles({
 // Component
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-const FacebookOAuthButton: FunctionComponent<OAuthButtonProps> = ({
+const FacebookOAuthButton: FunctionComponent<FacebookOAuthButtonProps> = ({
   children,
   onClick,
   buttonProps

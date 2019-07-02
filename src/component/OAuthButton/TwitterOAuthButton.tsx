@@ -5,6 +5,12 @@ import OAuthButton, { OAuthButtonProps } from ".";
 import TwitterIcon from "../../icon/TwitterFilled";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
+// Typescript
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+type TwitterOAuthButtonProps = Omit<OAuthButtonProps, "icon">;
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
 // CSS
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -22,7 +28,7 @@ const useStyles = makeStyles({
 // Component
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-const TwitterOAuthButton: FunctionComponent<OAuthButtonProps> = ({
+const TwitterOAuthButton: FunctionComponent<TwitterOAuthButtonProps> = ({
   children,
   onClick,
   buttonProps
