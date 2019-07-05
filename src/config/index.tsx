@@ -23,7 +23,7 @@ export type Config = RecursivePartial<DefaultConfig>;
 const config = (() => {
   const path = findUp.sync("tiq.config.js");
   if (path && path.length) {
-    const userConfigModule: Config = module.require(path);
+    const userConfigModule = module.require(path);
     return deepMerge(defaultConfig, userConfigModule);
   }
   return defaultConfig;

@@ -1,4 +1,3 @@
-import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import blue from "@material-ui/core/colors/blue";
 import green from "@material-ui/core/colors/green";
 
@@ -8,12 +7,12 @@ import green from "@material-ui/core/colors/green";
 
 export interface ThemeBranding {
   readonly palette: {
-    primary: Theme["palette"]["primary"]["main"];
-    secondary: Theme["palette"]["secondary"]["main"];
+    primary: string;
+    secondary: string;
   };
   readonly typography: {
     readonly fontFamily: {
-      text: Theme["typography"]["fontFamily"];
+      text: string;
     };
   };
 }
