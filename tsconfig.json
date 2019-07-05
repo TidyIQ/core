@@ -2,7 +2,7 @@
   "compilerOptions": {
     "alwaysStrict": true /* Parse in strict mode. */,
     "esModuleInterop": true /* matches compilation setting */,
-    "jsx": "preserve" /* Preserves jsx outside of Next.js. */,
+    "jsx": "react-native" /* Compile to react, use react-native to output to .js instead of .jsx */,
     "lib": [
       "dom",
       "es5"
