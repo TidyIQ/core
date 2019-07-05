@@ -1,15 +1,15 @@
 import AppProvider from "./next/_app";
 import DocumentProvider from "./next/_document";
-import { Store } from "./state/store";
+import { store } from "./state/store";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Next.js
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-// Import to /page/_app.<js/tsx>
+// _app.tsx
 export { AppProvider };
 
-// Import to /page/_document.<js/tsx>
+// _document.tsx
 export { DocumentProvider };
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -17,4 +17,4 @@ export { DocumentProvider };
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
 // Store
-export { Store };
+export { store };

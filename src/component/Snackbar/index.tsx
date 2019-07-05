@@ -10,24 +10,21 @@ import InfoIcon from "@material-ui/icons/Info";
 import WarningIcon from "@material-ui/icons/Warning";
 import CloseIcon from "@material-ui/icons/Close";
 import { SvgIconProps } from "@material-ui/core/SvgIcon";
-import { CSSProperties } from "@material-ui/styles";
-import { closeSnackbar } from "../../state/actions/default";
-import { Store } from "../../state/store";
-import { AllState } from "../../state/state";
+import { closeSnackbar, store, State } from "../../state";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Typescript
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
 interface UseVariant {
-  (variant: AllState["snackbar"]["variant"]): {
-    color: CSSProperties["color"];
+  (variant: State["snackbar"]["variant"]): {
+    color: string;
     Icon: ComponentType<SvgIconProps>;
   };
 }
 
 interface StylesProps {
-  color: CSSProperties["color"];
+  color: string;
 }
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -90,7 +87,7 @@ const useStyles = makeStyles(theme => ({
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
 const MySnackbar: FunctionComponent = () => {
-  const { state, dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(store);
   const { message, open, undo, variant } = state.snackbar;
   const { color, Icon } = useVariant(variant);
   const classes = useStyles({ color });
@@ -109,7 +106,7 @@ const MySnackbar: FunctionComponent = () => {
 
   const handleUndo: ButtonProps["onClick"] = () => {
     dispatch(closeSnackbar());
-    if (hasUndo) {
+    if (undo !== null) {
       undo();
     }
   };

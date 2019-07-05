@@ -3,8 +3,7 @@ import { makeStyles } from "@material-ui/core";
 import IconButton, { IconButtonProps } from "@material-ui/core/IconButton";
 import ShowPasswordIcon from "@material-ui/icons/Visibility";
 import HidePasswordIcon from "@material-ui/icons/VisibilityOff";
-import { updateField } from "../../state/actions/default";
-import { Store } from "../../state/store";
+import { updateField, store } from "../../state";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Typescript
@@ -32,7 +31,7 @@ const ShowHidePasswordButton: FunctionComponent<
   ShowHidePasswordButtonProps
 > = ({ form }) => {
   const classes = useStyles({});
-  const { state, dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(store);
   const { showPassword } = state.forms[form].fields.password;
 
   const toggleShowPassword: IconButtonProps["onClick"] = event => {

@@ -1,3 +1,4 @@
+import deepMerge from "deepmerge";
 import React, {
   useReducer,
   createContext,
@@ -5,19 +6,18 @@ import React, {
   PropsWithChildren,
   Context
 } from "react";
-import { AllState } from "../state";
-import initialState from "../state/initialState";
-import reducer, { Action } from "../reducers";
+import { State } from "../state";
+import config from "../../config";
+import { Action } from "../reducers";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
-// Context and provider
-// https://github.com/typescript-cheatsheets/react-typescript-cheatsheet#user-content-context
+// Typescript
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
 interface CreateCtx {
   (): readonly [
     Context<{
-      state: AllState;
+      state: State;
       dispatch: Dispatch<Action>;
     }>,
     Provider
@@ -28,7 +28,32 @@ interface Provider {
   (props: PropsWithChildren<{}>): JSX.Element;
 }
 
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+// Reducer
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+interface ReducerFunction {
+  (state: State, action: Action): State;
+}
+
+const reducer: ReducerFunction = (state, action) => {
+  const allReducers = config.state.reducers;
+  if (allReducers[action.type]) {
+    const newState = deepMerge(state, allReducers[action.type](action));
+    return Object.assign<{}, State, State>({}, state, newState);
+  }
+  return state;
+};
+
+export default reducer;
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+// Context and provider
+// https://github.com/typescript-cheatsheets/react-typescript-cheatsheet#user-content-context
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
 const createCtx: CreateCtx = () => {
+  const { initialState } = config.state;
   const defaultDispatch: Dispatch<Action> = () => initialState;
   const ctx = createContext({
     state: initialState,
@@ -42,6 +67,7 @@ const createCtx: CreateCtx = () => {
 };
 
 const create = createCtx();
+const store = create[0];
+const StateProvider = create[1];
 
-export const Store = create[0];
-export const StateProvider = create[1];
+export { store, StateProvider };

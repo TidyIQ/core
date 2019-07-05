@@ -1,29 +1,10 @@
-import { CSSProperties } from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeOptions, Theme } from "@material-ui/core/styles/createMuiTheme";
-import blue from "@material-ui/core/colors/blue";
-import green from "@material-ui/core/colors/green";
-import amber from "@material-ui/core/colors/amber";
-import themeBranding from "../../../../theme/branding";
 import {
   createVibrantBackground,
   createBackgroundGradient
 } from "../utils/functions";
-
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-// Constants
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-
-interface Palette {
-  info: CSSProperties["color"];
-  success: CSSProperties["color"];
-  warn: CSSProperties["color"];
-}
-const palette: Palette = {
-  info: blue[700],
-  success: green[800],
-  warn: amber[700]
-};
+import config from "../config";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Typescript
@@ -31,26 +12,26 @@ const palette: Palette = {
 
 interface CustomOptions {
   typography: {
-    textShadow: CSSProperties["textShadow"];
+    textShadow: string;
   };
   background: {
     vibrant: {
-      primary: CSSProperties["backgroundColor"];
-      secondary: CSSProperties["backgroundColor"];
+      primary: string;
+      secondary: string;
     };
     gradient: {
-      primary: CSSProperties["backgroundColor"];
-      secondary: CSSProperties["backgroundColor"];
+      primary: string;
+      secondary: string;
     };
   };
   palette: {
-    success: CSSProperties["color"];
-    warn: CSSProperties["color"];
-    info: CSSProperties["color"];
+    success: string;
+    warn: string;
+    info: string;
     focusedInput: {
-      label: CSSProperties["color"];
-      border: CSSProperties["color"];
-      icon: CSSProperties["color"];
+      label: string;
+      border: string;
+      icon: string;
     };
   };
 }
@@ -64,6 +45,12 @@ declare module "@material-ui/core/styles/createMuiTheme" {
 }
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
+// Constants
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+const { palette, branding } = config.theme;
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
 // Set theme colors and fonts
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -71,15 +58,14 @@ const createMyTheme = (options?: ThemeOptions): Theme => {
   return createMuiTheme({
     palette: {
       primary: {
-        main: themeBranding.palette.primary
+        main: branding.palette.primary
       },
       secondary: {
-        main: themeBranding.palette.secondary
-      },
-      type: "light"
+        main: branding.palette.secondary
+      }
     },
     typography: {
-      fontFamily: themeBranding.typography.fontFamily.text,
+      fontFamily: branding.typography.fontFamily.text,
       h1: {
         fontFamily:
           '"Montserrat", "Open Sans", "Roboto", "Helvetica", "Arial", sans-serif'
@@ -114,12 +100,12 @@ const createCustomTheme = (options?: ThemeOptions): Theme =>
       },
       background: {
         vibrant: {
-          primary: createVibrantBackground(themeBranding.palette.primary),
-          secondary: createVibrantBackground(themeBranding.palette.secondary)
+          primary: createVibrantBackground(branding.palette.primary),
+          secondary: createVibrantBackground(branding.palette.secondary)
         },
         gradient: {
-          primary: createBackgroundGradient(themeBranding.palette.primary),
-          secondary: createBackgroundGradient(themeBranding.palette.secondary)
+          primary: createBackgroundGradient(branding.palette.primary),
+          secondary: createBackgroundGradient(branding.palette.secondary)
         }
       },
       palette: {
@@ -189,15 +175,3 @@ const theme = createCustomTheme({
 });
 
 export default theme;
-
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-// Create light theme variant
-// ::::::::::::::::::::::::::::::::::::::::::::::::
-
-export const lightTheme = (): Theme =>
-  createMuiTheme({
-    ...theme,
-    palette: {
-      type: "light"
-    }
-  });

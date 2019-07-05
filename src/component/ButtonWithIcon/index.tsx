@@ -42,7 +42,7 @@ const ButtonWithIcon: FunctionComponent<ButtonWithIconProps> = ({
     <Button onClick={onClick} {...buttonProps}>
       <IconComponent
         {...iconProps}
-        className={clsx(classes.icon, iconProps.className)}
+        className={clsx(classes.icon, iconProps && iconProps.className)}
       />
       {children}
     </Button>

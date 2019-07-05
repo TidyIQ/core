@@ -17,11 +17,8 @@ import FormHelperText, {
 } from "@material-ui/core/FormHelperText";
 import Collapse from "@material-ui/core/Collapse";
 import ShowHidePasswordButton from "../ShowHidePasswordButton";
-import IconStartAdornment, {
-  IconStartAdornmentProps
-} from "../IconStartAdornment";
-import { updateField } from "../../state/actions/default";
-import { Store } from "../../state/store";
+import IconStartAdornment from "../IconStartAdornment";
+import { updateField, store } from "../../state";
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Logic
@@ -44,7 +41,7 @@ const useUpdateValidity: UseUpdateValidity = (
   isInvalid,
   passesValidCheck
 ) => {
-  const { dispatch } = useContext(Store);
+  const { dispatch } = useContext(store);
   if (passesValidCheck) {
     if (!isValid) {
       dispatch(updateField(form, id, "isValid", true));
@@ -73,8 +70,8 @@ export interface InputField {
   readonly label: HTMLLabelElement["innerText"];
   readonly type?: HTMLInputElement["type"];
   readonly validation: {
-    readonly helperMessage?: FormHelperTextProps["children"];
-    readonly invalidMessage?: FormHelperTextProps["children"];
+    readonly helperMessage?: string;
+    readonly invalidMessage?: string;
     readonly minLength?: HTMLInputElement["minLength"];
     readonly pattern: HTMLInputElement["pattern"];
     readonly required: HTMLInputElement["required"];
@@ -134,7 +131,7 @@ const MyOutlinedInput: FunctionComponent<MyOutlinedInputProps> = ({
   showIcon,
   validate
 }) => {
-  const { state, dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(store);
   const classes = useStyles({});
 
   const { form, icon, id, label, type, validation } = fieldData;
@@ -155,9 +152,15 @@ const MyOutlinedInput: FunctionComponent<MyOutlinedInputProps> = ({
 
   const inputRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLLabelElement>(null);
+  const currentInputRef = inputRef.current;
+  const currentLabelRef = labelRef.current;
+  const { validationMessage } = currentInputRef || {
+    validationMessage: "Error"
+  };
+  const labelOffsetWidth = currentLabelRef ? currentLabelRef.offsetWidth : 0;
 
   let helperText: FormHelperTextProps["children"];
-  let iconStartAdornClasses: IconStartAdornmentProps["props"]["classes"];
+  let iconStartAdornClasses: SvgIconProps["classes"];
   let inputLabelClasses: InputLabelProps["classes"];
   let inputType = type || "text";
 
@@ -172,7 +175,7 @@ const MyOutlinedInput: FunctionComponent<MyOutlinedInputProps> = ({
 
   if (isInvalid) {
     iconStartAdornClasses = { root: classes.errorColor };
-    helperText = invalidMessage || inputRef.current.validationMessage;
+    helperText = invalidMessage || validationMessage;
   } else {
     helperText = helperMessage;
   }
@@ -192,7 +195,9 @@ const MyOutlinedInput: FunctionComponent<MyOutlinedInputProps> = ({
 
     if (newFocus.id === "toggleShowPasswordButton") {
       window.setTimeout(() => {
-        inputRef.current.focus();
+        if (currentInputRef) {
+          currentInputRef.focus();
+        }
       }, 0);
     }
 
@@ -212,7 +217,7 @@ const MyOutlinedInput: FunctionComponent<MyOutlinedInputProps> = ({
 
   // Set labelWidth on component mount
   useEffect((): void => {
-    dispatch(updateField(form, id, "labelWidth", labelRef.current.offsetWidth));
+    dispatch(updateField(form, id, "labelWidth", labelOffsetWidth));
   }, []);
 
   return (

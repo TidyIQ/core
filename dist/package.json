@@ -1,7 +1,7 @@
 {
-  "name": "tidyiq-core-development",
+  "name": "@tidyiq/core",
   "version": "0.2.4",
-  "description": "Development of core template for all websites and web apps",
+  "description": "Core template for all websites and web apps",
   "keywords": [
     "tidyiq"
   ],
@@ -16,14 +16,6 @@
   "bugs": {
     "url": "https://github.com/TidyIQ/core/issues"
   },
-  "eslintConfig": {
-    "extends": "@tidyiq"
-  },
-  "scripts": {
-    "lint": "eslint */**/*.{js,ts,tsx} --quiet --fix",
-    "type-check": "tsc --noEmit",
-    "build": "eslint */**/*.{js,ts,tsx} --quiet --fix && tsc -d"
-  },
   "dependencies": {
     "@material-ui/core": "^4.1.2",
     "@material-ui/icons": "^4.2.1",
@@ -34,8 +26,5 @@
     "next": "^8.1.1-canary.67",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
-  },
-  "devDependencies": {
-    "@tidyiq/core-dev": "^0.1.2"
   }
 }

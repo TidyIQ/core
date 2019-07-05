@@ -70,7 +70,7 @@ const Progress: FunctionComponent<ProgressProps> = ({
   error,
   loading,
   status,
-  success = { title: "Success!", description: "" }
+  success
 }) => {
   const classes = useStyles({});
   const isLoading = status === "loading";
@@ -87,17 +87,18 @@ const Progress: FunctionComponent<ProgressProps> = ({
   // isSuccess
   if (isSuccess) {
     color = undefined;
+    ({ description } = success);
     icon = SuccessIcon;
     iconClass = classes.success;
-    ({ description, title } = success);
+    title = success.title || "Success";
     titleClass = classes.success;
   }
 
   // isError
   else if (isError) {
     color = "error";
-    icon = ErrorIcon;
     ({ description, title } = error);
+    icon = ErrorIcon;
     titleClass = classes.error;
   }
 
