@@ -1,12 +1,26 @@
 import findUp from "find-up";
 import deepMerge from "deepmerge";
-import defaultConfig, { Config } from "./default";
+import defaultConfig, { DefaultConfig } from "./default";
+
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+// Typescript
+// ::::::::::::::::::::::::::::::::::::::::::::::::
+
+type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[]
+    ? RecursivePartial<U>[]
+    : T[P] extends object
+    ? RecursivePartial<T[P]>
+    : T[P];
+};
+
+export type Config = RecursivePartial<DefaultConfig>;
 
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 // Create configuration object
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-const createConfig = (() => {
+const config = (() => {
   const path = findUp.sync("tiq.config.js");
   if (path && path.length) {
     const userConfigModule: Config = module.require(path);
@@ -15,4 +29,4 @@ const createConfig = (() => {
   return defaultConfig;
 })();
 
-export default createConfig;
+export default config;

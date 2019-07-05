@@ -7,14 +7,14 @@ import { defaultPalette, ThemePalette } from "../theme/palette";
 // Typescript
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-export interface Config {
-  state: {
-    initialState: State;
-    reducers: Reducers;
+export interface DefaultConfig {
+  readonly state: {
+    readonly initialState: State;
+    readonly reducers: Reducers;
   };
-  theme: {
-    branding: ThemeBranding;
-    palette: ThemePalette;
+  readonly theme: {
+    readonly branding: ThemeBranding;
+    readonly palette: ThemePalette;
   };
 }
 
@@ -22,7 +22,7 @@ export interface Config {
 // Default configuration
 // ::::::::::::::::::::::::::::::::::::::::::::::::
 
-const defaultConfig: Config = {
+const defaultConfig: DefaultConfig = {
   state: {
     initialState: defaultState,
     reducers: defaultReducers
