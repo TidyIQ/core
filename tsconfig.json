@@ -2,10 +2,10 @@
   "compilerOptions": {
     "alwaysStrict": true /* Parse in strict mode. */,
     "esModuleInterop": true /* matches compilation setting */,
-    "jsx": "react-native" /* Compile to react, use react-native to output to .js instead of .jsx */,
+    "jsx": "react" /* Compile to react */,
     "lib": [
       "dom",
-      "es5"
+      "es6"
     ] /* List of library files to be included in the type checking. */,
     "module": "commonjs" /* Specifies the type of module to type check. */,
     "moduleResolution": "node" /* Determine how modules get resolved. */,
@@ -16,7 +16,7 @@
     "noUnusedLocals": true /* Report errors on unused locals. */,
     "noUnusedParameters": true /* Report errors on unused parameters. */,
     "strict": true /* Enable all strict type-checking options. */,
-    "target": "esnext" /* The type checking input. */,
+    "target": "es5" /* The type checking input. */,
 
     /* TidyIQ Options */
     "removeComments": true /* Remove comments from output */
