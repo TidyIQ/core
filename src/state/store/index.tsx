@@ -39,7 +39,7 @@ interface ReducerFunction {
 const reducer: ReducerFunction = (state, action) => {
   const allReducers = config.state.reducers;
   if (allReducers[action.type]) {
-    const newState = deepMerge(state, allReducers[action.type](action));
+    const newState: State = deepMerge(state, allReducers[action.type](action));
     return Object.assign<{}, State, State>({}, state, newState);
   }
   return state;
