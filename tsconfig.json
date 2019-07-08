@@ -2,12 +2,12 @@
   "compilerOptions": {
     "alwaysStrict": true /* Parse in strict mode. */,
     "esModuleInterop": true /* matches compilation setting */,
-    "jsx": "react" /* Compile to react */,
+    "jsx": "preserve" /* Compile to react */,
     "lib": [
       "dom",
-      "es6"
+      "esnext"
     ] /* List of library files to be included in the type checking. */,
-    "module": "commonjs" /* Specifies the type of module to type check. */,
+    "module": "esnext" /* Specifies the type of module to type check. */,
     "moduleResolution": "node" /* Determine how modules get resolved. */,
     "outDir": "dist" /* Directory to compile output to */,
 
@@ -16,7 +16,7 @@
     "noUnusedLocals": true /* Report errors on unused locals. */,
     "noUnusedParameters": true /* Report errors on unused parameters. */,
     "strict": true /* Enable all strict type-checking options. */,
-    "target": "es5" /* The type checking input. */,
+    "target": "esnext" /* The type checking input. */,
 
     /* TidyIQ Options */
     "removeComments": true /* Remove comments from output */

@@ -60,9 +60,12 @@ const pathToConfig = path.join(PATH_TO_ROOT, CONFIG_FILE);
 
 const config: DefaultConfig = (() => {
   try {
-    // eslint-disable-next-line
-    const userConfig: Config = require(pathToConfig);
-    return deepMerge<DefaultConfig, Config>(defaultConfig, userConfig);
+    const userConfig = async (): Promise<Config> =>
+      import(pathToConfig).then(i => i.default);
+    return deepMerge<DefaultConfig, Promise<Config>>(
+      defaultConfig,
+      userConfig()
+    );
   } catch {
     return defaultConfig;
   }
