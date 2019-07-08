@@ -2,7 +2,7 @@
   "compilerOptions": {
     "alwaysStrict": true /* Parse in strict mode. */,
     "esModuleInterop": true /* matches compilation setting */,
-    "jsx": "preserve" /* Compile to react */,
+    "jsx": "react" /* Compile to react */,
     "lib": [
       "dom",
       "esnext"
